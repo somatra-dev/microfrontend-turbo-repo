@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Navigation } from "@repo/ui/zone-nav";
+import Providers from './providers';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +26,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Providers>
+          <Navigation />
+          {children}
+          <footer className="bg-gray-100 mt-20 py-8 text-center text-gray-600">
+            <p>© 2026 Apple Multi-Zone Demo. All rights reserved.</p>
+            <p className="text-sm mt-2">This is the <strong>Home Zone</strong> (Port 3000)</p>
+          </footer>
+        </Providers>
       </body>
     </html>
   );

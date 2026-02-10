@@ -1,44 +1,48 @@
-type Zone = {
-  name: string;
+'use client';
+
+import React from 'react';
+import { UserCom } from './UserComponet';
+
+interface NavLink {
+  label: string;
   href: string;
-  description?: string;
-};
+  external?: boolean;
+}
 
-type ZoneNavProps = {
-  zones?: Zone[];
-  className?: string;
-};
-
-const defaultZones: Zone[] = [
-  { name: "iPhone", href: "/iphone", description: "Pocket tasks" },
-  { name: "iPad", href: "/ipad", description: "Split layout" },
-  { name: "MacBook", href: "/macbook", description: "Deep work" },
+const navLinks: NavLink[] = [
+  { label: 'Home', href: '/' },
+  { label: 'iphone', href: '/iphone' },
+  { label: 'ipad', href: '/ipad' },
+  { label: 'macbook', href: '/macbook' }
 ];
 
-export function ZoneNav({ zones = defaultZones, className }: ZoneNavProps) {
-  const classes = ["grid gap-4 sm:grid-cols-3", className]
-    .filter(Boolean)
-    .join(" ");
-
+export const Navigation: React.FC = () => {
   return (
-    <nav className={classes} aria-label="Zones">
-      {zones.map((zone) => (
-        <a
-          key={zone.href}
-          href={zone.href}
-          className="group flex flex-col rounded-2xl border border-black/10 bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-md"
-        >
-          <span className="text-sm font-semibold text-black">{zone.name}</span>
-          {zone.description ? (
-            <span className="mt-1 text-xs text-black/60">
-              {zone.description}
-            </span>
-          ) : null}
-          <span className="mt-3 text-xs font-semibold text-black/70">
-            Open →
-          </span>
-        </a>
-      ))}
+    <nav className="bg-gray-900 text-white">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex items-center justify-around h-12">
+          {/* Logo */}
+          <a href="/" className="font-bold text-xl">
+            Apple
+          </a>
+
+          {/* Navigation Links */}
+          <div className="flex space-x-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="hover:text-gray-300 transition-colors text-sm"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+          <div>
+            <UserCom />
+          </div>
+        </div>
+      </div>
     </nav>
   );
-}
+};

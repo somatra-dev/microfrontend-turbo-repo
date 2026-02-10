@@ -1,6 +1,7 @@
-import { ZoneNav } from "@repo/ui/zone-nav";
 
 export default function Home() {
+
+
   return (
     <div className="min-h-screen bg-zinc-50 px-6 py-12 text-zinc-900">
       <header className="mx-auto mb-10 max-w-4xl text-center">
@@ -14,7 +15,7 @@ export default function Home() {
       </header>
 
       <main className="mx-auto max-w-4xl">
-        <ZoneNav />
+
       </main>
     </div>
   );
